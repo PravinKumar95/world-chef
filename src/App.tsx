@@ -1,17 +1,17 @@
-import { OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { StoveModel } from "./models/Stove";
+import { Suspense } from "react";
 function App() {
   return (
     <div id="canvas-container">
-      <Canvas>
-        <StoveModel />
-        <mesh>
-          <boxGeometry />
-          <meshStandardMaterial />
-          <ambientLight intensity={0.1} />
-        </mesh>
+      <Canvas shadows>
+        <Suspense fallback={null}>
+          <StoveModel />
+        </Suspense>
+        <ambientLight />
         <OrbitControls />
+        <Environment preset="sunset" />
       </Canvas>
     </div>
   );
